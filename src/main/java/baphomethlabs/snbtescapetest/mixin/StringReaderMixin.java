@@ -36,22 +36,24 @@ public abstract class StringReaderMixin {
         final StringBuilder result = new StringBuilder();
         boolean escaped = false;
         boolean returned = false;
-        String unicode = null;
+        final StringBuilder unicodeSequence = new StringBuilder(4);
+        boolean readUnicode = false;
         while (canRead() && !returned) {
             final char c = read();
-            if(unicode != null) {
+            if(readUnicode) {
                 if((""+c).matches("[a-f0-9]")) {
-                    unicode += c;
-                    if(unicode.length()==4) {
-                        result.append((char)Integer.parseInt(unicode,16));
-                        unicode = null;
+                    unicodeSequence.append(c);
+                    if(unicodeSequence.length()==4) {
+                        result.append((char)Integer.parseInt(unicodeSequence.toString(),16));
+                        unicodeSequence.setLength(0);
+                        readUnicode = false;
                     }
                 }
                 else {
-                    String errorMsg = "u"+unicode;
+                    String errorMsg = "u"+unicodeSequence.toString();
                     if(c != terminator)
                         errorMsg += c;
-                    setCursor(getCursor() - 1 - unicode.length());
+                    setCursor(getCursor() - 1 - unicodeSequence.length());
                     throw CommandSyntaxException.BUILT_IN_EXCEPTIONS.readerInvalidEscape().createWithContext(((StringReader)(Object)this), errorMsg);
                 }
             }
@@ -64,9 +66,8 @@ public abstract class StringReaderMixin {
                     result.append('\t');
                 else if (c == 'r')
                     result.append('\r');
-                else if (c == 'u') {
-                    unicode = "";
-                }
+                else if (c == 'u')
+                    readUnicode = true;
                 else {
                     setCursor(getCursor() - 1);
                     throw CommandSyntaxException.BUILT_IN_EXCEPTIONS.readerInvalidEscape().createWithContext(((StringReader)(Object)this), String.valueOf(c));
