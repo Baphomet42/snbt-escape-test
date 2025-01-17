@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "snbtescapetest",
+	"version": "${version}",
+	"name": "Text Test",
+	"description": "Snapshot 25w02a test",
+	"authors": [
+		"BaphomethLabs"
+	],
+	"contact": {
+		"homepage": "https://baphomet42.github.io/",
+		"sources": "https://github.com/Baphomet42/25w02a-text-component-test"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/snbtescapetest/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"baphomethlabs.snbtescapetest.SnbtEscapeTestMod"
+		]
+	},
+	"mixins": [
+		"snbtescapetest.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "*",
+		"java": ">=21"
+	}
+}

@@ -1,0 +1,49 @@
+# gradle
+
+.gradle/
+out/
+classes/
+
+# eclipse
+
+*.launch
+
+# idea
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# vscode
+
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+*.code-workspace
+
+# macos
+
+*.DS_Store
+
+# fabric
+
+run/
+
+# java
+
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+
+# build
+
+build/*
+!build/libs/
+
+build/libs/*
+!build/libs/snbtescapetest-*.jar
+build/libs/snbtescapetest-*-sources.jar
