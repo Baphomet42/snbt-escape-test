@@ -2,7 +2,7 @@
 
 ## This is for demo purposes only, do not use this in a real world
 
-This 25w03a fabric mod is a simple proof of concept that explores the possibility of allowing certain escape sequences in SNBT. This would be especially useful now that text components are read as SNBT instead of JSON within a string.
+This 25w05a fabric mod is a simple proof of concept that explores the possibility of allowing certain escape sequences in SNBT. This would be especially useful now that text components are read as SNBT instead of JSON within a string.
 
 Valid escapes include:
 + `\n` newline
